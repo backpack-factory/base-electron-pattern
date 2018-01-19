@@ -72,9 +72,7 @@ module.exports = {
     ],
     resolve: {
       extensions: ['.css', '.js', '.json'],
-      resolve: {
-        alias: { '@': path.resolve('src/renderer') }
-      }
+      alias: { '@': path.resolve('src/renderer') }
     },
     target: 'electron-renderer'
   },
