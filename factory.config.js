@@ -71,7 +71,10 @@ module.exports = {
       new webpack.HotModuleReplacementPlugin()
     ],
     resolve: {
-      extensions: ['.css']
+      extensions: ['.css', '.js', '.json'],
+      resolve: {
+        alias: { '@': path.resolve('src/renderer') }
+      }
     },
     target: 'electron-renderer'
   },
