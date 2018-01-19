@@ -3,6 +3,7 @@
 process.env.NODE_ENV = 'production'
 
 const del = require('del')
+const path = require('path')
 const chalk = require('chalk')
 const { say } = require('cfonts')
 const { merge } = require('lodash')
@@ -58,6 +59,10 @@ function greeting () {
 }
 
 module.exports = function (config, webpack) {
+  const nodeModules = config.paths.patterns.map(p => path.join(p, 'node_modules'))
+  config.webpack.resolve.modules.push(...nodeModules)
+  config.webpack.resolveLoader.modules.push(...nodeModules)
+
   greeting()
 
   del.sync(['dist/electron/*', '!.gitkeep'])

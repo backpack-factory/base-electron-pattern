@@ -87,6 +87,10 @@ function electronLog (data, color) {
 }
 
 module.exports = function (config, webpack) {
+  const nodeModules = config.paths.patterns.map(p => path.join(p, 'node_modules'))
+  config.webpack.resolve.modules.push(...nodeModules)
+  config.webpack.resolveLoader.modules.push(...nodeModules)
+
   console.log(chalk.blue('  getting ready...') + '\n')
   Promise.all([
     startRenderer(merge({}, config.webpack, config.webpackRenderer), webpack),
